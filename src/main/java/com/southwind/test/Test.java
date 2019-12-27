@@ -10,6 +10,9 @@ public class Test {
         ApplicationContext applicationContext=new ClassPathXmlApplicationContext("spring.xml");
         Cal cal=(Cal)applicationContext.getBean("calImpl");
         System.out.println(cal.add(10,3));
+        System.out.println(cal.sub(10,3));
+        System.out.println(cal.mul(10,3));
+        System.out.println(cal.div(10,0));
     }
 
 

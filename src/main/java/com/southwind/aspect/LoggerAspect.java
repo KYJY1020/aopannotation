@@ -1,9 +1,6 @@
 package com.southwind.aspect;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -22,8 +19,13 @@ public void after(JoinPoint joinPoint,Object result){
     String name=joinPoint.getSignature().getName();
     String args = Arrays.toString(joinPoint.getArgs());
     System.out.println(name+"的结果是："+result);
-
-
-
+}
+@After("execution(public int com.southwind.aop.CalImpl.*(..))")
+public void after(JoinPoint joinPoint){
+    System.out.println(joinPoint.getSignature().getName()+"的业务代码执行完毕");
+}
+@AfterThrowing(value="execution(public int com.southwind.aop.CalImpl.*(..))",throwing = "e")
+public void afterThrowing(JoinPoint joinPoint,Exception e){
+    System.out.println(joinPoint.getSignature().getName()+"的方法抛出异常");
 }
 }
